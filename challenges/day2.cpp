@@ -2,14 +2,14 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
-
-// Known answers: 2239, 83435
+#include <gtest/gtest.h>
 
 constexpr std::uint64_t RED_CUBE_POOL = 12;
 constexpr std::uint64_t GREEN_CUBE_POOL = 13;
 constexpr std::uint64_t BLUE_CUBE_POOL = 14;
 
-int main() {
+std::pair<std::string, std::string> day2()
+{
     std::cout << "=========================================\n";
     std::cout << "Advent of Code - Day 2\n";
     std::cout << "=========================================\n";
@@ -69,8 +69,12 @@ int main() {
     }
     input.close();
 
-    std::cout << "Part 1 - Sum of IDs: " << sum1 << "\n";
-    std::cout << "Part 2 - Sum of power values: " << sum2 << "\n";
+    return std::make_pair(std::to_string(sum1), std::to_string(sum2));
+}
+// Known answers: 2239, 83435
 
-
+TEST(ResultTest, Day2Test)
+{
+    auto res = day2();
+    EXPECT_EQ(res, std::make_pair(std::string{"2239"}, std::string{"83435"}));
 }

@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <numeric>
 
-// Known answers: 54697, 54885
+#include <gtest/gtest.h>
 
 std::uint64_t update_digits(std::pair<std::size_t, std::uint64_t>& first_digit,
                    std::pair<std::size_t, std::uint64_t>& second_digit,
@@ -35,7 +35,7 @@ std::uint64_t update_digits(std::pair<std::size_t, std::uint64_t>& first_digit,
     return calibration_value1;
 }
 
-int main()
+std::pair<std::string, std::string> day1()
 {
     std::cout << "=========================================\n";
     std::cout << "Advent of Code - Day 1\n";
@@ -66,6 +66,12 @@ int main()
     }
     input.close();
 
-    std::cout << "Part 1 - Sum of calibration values: " << sum1 << "\n";
-    std::cout << "Part 2 - Sum of calibration values: " << sum2 << "\n";
+    return std::make_pair(std::to_string(sum1), std::to_string(sum2));
+}
+// Known answers: 54697, 54885
+
+TEST(ResultTest, Day1Test)
+{
+    auto res = day1();
+    EXPECT_EQ(res, std::make_pair(std::string{"54697"}, std::string{"54885"}));
 }
